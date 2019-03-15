@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
        }
    })
    x = x || 1;
+   
    function loop() {
     requestAnimationFrame(loop);
     game.play(x);
