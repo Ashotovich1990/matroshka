@@ -1,0 +1,19 @@
+{
+  "name": "wolf_collecting_eggs_while_being_mocked_by_a_rabbit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch --mode=development"
+  },
+  "author": "Aram Sargsyan",
+  "license": "ISC",
+  "dependencies": {
+    "file-loader": "^3.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  }
+}
