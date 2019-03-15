@@ -1,7 +1,10 @@
+const kremlin = new Image();
+kremlin.src = './images/kremlin.png'
+
 class Kremlin {
-    constructor(ctx, image) {
+    constructor(ctx) {
         this.ctx = ctx;
-        this.image = image;
+        this.image = kremlin
     }
 
     move() {

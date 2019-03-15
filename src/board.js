@@ -1,11 +1,7 @@
 class Board {
-   constructor(ctx, chicken, chickenRotate, kremlin) {
+   constructor(ctx) {
         this.ctx = ctx;
-        this.chicken = chicken;
-        this.chickenRotate = chickenRotate;
-        this.kremlin = kremlin;
    }
-
 
     move()  {
         this.ctx.fillStyle = "#D8D8D8"; 

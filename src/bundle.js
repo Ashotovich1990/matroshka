@@ -118,11 +118,11 @@ class Basket  {
         if (direction === 1) {
             this.drawBasket(220, 280);
         } else if (direction === 2) {
-            this.drawBasket(220, 420)
+            this.drawBasket(220, 430)
         } else if ( direction === 3) {
             this.drawBasket(760, 280);
         } else if (direction === 4) {
-            this.drawBasket(760, 420)
+            this.drawBasket(760, 430)
         }
     }
 
@@ -143,13 +143,9 @@ class Basket  {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 class Board {
-   constructor(ctx, chicken, chickenRotate, kremlin) {
+   constructor(ctx) {
         this.ctx = ctx;
-        this.chicken = chicken;
-        this.chickenRotate = chickenRotate;
-        this.kremlin = kremlin;
    }
-
 
     move()  {
         this.ctx.fillStyle = "#D8D8D8"; 
@@ -225,6 +221,226 @@ class Chicken {
 
 /***/ }),
 
+/***/ "./src/eggs/bottom_left_egg.js":
+/*!*************************************!*\
+  !*** ./src/eggs/bottom_left_egg.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _egg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./egg */ "./src/eggs/egg.js");
+
+
+class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
+   constructor(ctx) {
+      super();
+      this.ctx = ctx;
+      this.pos = [100, 300];
+   }
+
+   move(x) {
+      if (this.pos[1] <= 333) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 333 && this.pos[1] <= 350) {
+         this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 350 && this.pos[1] <= 375) {
+         this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
+      this.pos[0] += 0.1 * x;
+      this.pos[1] += 0.04 * x;
+      this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      }
+
+   }
+  
+  }
+  
+  /* harmony default export */ __webpack_exports__["default"] = (EggBottomLeft);
+
+/***/ }),
+
+/***/ "./src/eggs/bottom_right_egg.js":
+/*!**************************************!*\
+  !*** ./src/eggs/bottom_right_egg.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _egg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./egg */ "./src/eggs/egg.js");
+
+
+class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
+   constructor(ctx) {
+      super()
+      this.ctx = ctx;
+      this.pos = [870, 300];
+   }
+
+   move(x) {
+      if (this.pos[1] <= 333) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 333 && this.pos[1] <= 350) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 350 && this.pos[1] <= 375) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.04 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      }
+      
+   }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (EggBottomRight);
+
+/***/ }),
+
+/***/ "./src/eggs/egg.js":
+/*!*************************!*\
+  !*** ./src/eggs/egg.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const egg_one = new Image();
+egg_one.src = './images/egg_one.png'
+
+const egg_two = new Image();
+egg_two.src = './images/egg_two.png'
+
+const egg_three = new Image();
+egg_three.src = './images/egg_three.png'
+
+const egg_four = new Image();
+egg_four.src = './images/egg_four.png'
+
+class Egg {
+    constructor() {
+      this.imageOne = egg_one;
+      this.imageTwo = egg_two;
+      this.imageThree = egg_three;
+      this.imageFour = egg_four;
+    }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Egg);
+
+/***/ }),
+
+/***/ "./src/eggs/top_left_egg.js":
+/*!**********************************!*\
+  !*** ./src/eggs/top_left_egg.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _egg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./egg */ "./src/eggs/egg.js");
+
+
+class EggTopLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
+   constructor(ctx) {
+      super()
+      this.ctx = ctx;
+      this.pos = [100, 150];
+   }
+
+   move(x) {
+      if (this.pos[1] <= 180) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 180 && this.pos[1] <= 200) {
+         this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 200 && this.pos[1] <= 225) {
+         this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
+         this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.04 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      }
+      
+   }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (EggTopLeft);
+
+
+/***/ }),
+
+/***/ "./src/eggs/top_right_egg.js":
+/*!***********************************!*\
+  !*** ./src/eggs/top_right_egg.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _egg__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./egg */ "./src/eggs/egg.js");
+
+
+class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
+   constructor(ctx) {
+      super()
+      this.ctx = ctx;
+      this.pos = [870, 150];
+   }
+
+   move(x) {
+      if (this.pos[1] <= 180) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 180 && this.pos[1] <= 200) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 200 && this.pos[1] <= 225) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.06 * x;
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
+         this.pos[0] -= 0.1 * x;
+         this.pos[1] += 0.04 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      }
+      
+   }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (EggTopRight);
+
+/***/ }),
+
 /***/ "./src/entry.js":
 /*!**********************!*\
   !*** ./src/entry.js ***!
@@ -277,6 +493,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _basket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./basket */ "./src/basket.js");
 /* harmony import */ var _chicken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chicken */ "./src/chicken.js");
 /* harmony import */ var _kremlin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./kremlin */ "./src/kremlin.js");
+/* harmony import */ var _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./eggs/top_left_egg */ "./src/eggs/top_left_egg.js");
+/* harmony import */ var _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eggs/bottom_left_egg */ "./src/eggs/bottom_left_egg.js");
+/* harmony import */ var _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./eggs/top_right_egg */ "./src/eggs/top_right_egg.js");
+/* harmony import */ var _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./eggs/bottom_right_egg */ "./src/eggs/bottom_right_egg.js");
+
+
+
+
 
 
 
@@ -293,18 +517,17 @@ function Game() {
     const chickenRotate = new Image();
     chickenRotate.src = './images/chicken-rotate.png'
 
-    const matroshkaPic = new Image();
-    matroshkaPic.src = './images/matroshka.png'
-    
-    const kremlinPic = new Image();
-    kremlinPic.src = './images/kremlin.png'
-
-    const board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"](ctx, chicken, chickenRotate);
-    const matroshka = new _matroshka__WEBPACK_IMPORTED_MODULE_1__["default"](ctx, matroshkaPic);
+    const board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
+    const matroshka = new _matroshka__WEBPACK_IMPORTED_MODULE_1__["default"](ctx);
     const basket = new _basket__WEBPACK_IMPORTED_MODULE_2__["default"](ctx);
     const chickenLeft = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](ctx, chicken, 10)
     const chickenRight = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](ctx, chickenRotate, 890)
-    const kremlin = new _kremlin__WEBPACK_IMPORTED_MODULE_4__["default"](ctx, kremlinPic);
+    const kremlin = new _kremlin__WEBPACK_IMPORTED_MODULE_4__["default"](ctx);
+    const eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](ctx);
+    const eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__["default"](ctx);
+    const eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__["default"](ctx);
+    const eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](ctx);
+    const EGGS = [eggTopLeft, eggBottomLeft, eggTopRight, eggBottomRight]
 
     this.play = (x) => {
         board.move();
@@ -313,6 +536,7 @@ function Game() {
         chickenLeft.move();
         chickenRight.move();
         kremlin.move();
+        EGGS.forEach(egg => egg.move(5));
     }
 }
 
@@ -327,10 +551,13 @@ function Game() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+const kremlin = new Image();
+kremlin.src = './images/kremlin.png'
+
 class Kremlin {
-    constructor(ctx, image) {
+    constructor(ctx) {
         this.ctx = ctx;
-        this.image = image;
+        this.image = kremlin
     }
 
     move() {
@@ -351,8 +578,11 @@ class Kremlin {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+const matroshka = new Image();
+matroshka.src = './images/matroshka.png'
+
 class Matroshka  {
-    constructor(ctx,matroshka) {
+    constructor(ctx) {
         this.matroshka = matroshka;
         this.ctx = ctx;
     }

@@ -21,11 +21,11 @@ class Basket  {
         if (direction === 1) {
             this.drawBasket(220, 280);
         } else if (direction === 2) {
-            this.drawBasket(220, 420)
+            this.drawBasket(220, 430)
         } else if ( direction === 3) {
             this.drawBasket(760, 280);
         } else if (direction === 4) {
-            this.drawBasket(760, 420)
+            this.drawBasket(760, 430)
         }
     }
 

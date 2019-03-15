@@ -1,5 +1,8 @@
+const matroshka = new Image();
+matroshka.src = './images/matroshka.png'
+
 class Matroshka  {
-    constructor(ctx,matroshka) {
+    constructor(ctx) {
         this.matroshka = matroshka;
         this.ctx = ctx;
     }
