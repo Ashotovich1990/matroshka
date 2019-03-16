@@ -8,9 +8,18 @@
 
 <body>
 
-  <h1>Wolf collecting eggs</h1>
+  <h1>Matroshka collecting eggs</h1>
+  <button data-playing="false" role="switch" aria-checked="false">
+      <span>Sound On/Off</span>
+  </button>
+  <Button id="play">Start A New Game</Button>
+  <audio loop="true" src="kalinka.mp3">
+    Your browser does not support the audio tag.
+  </audio>
   <canvas z-index="-1000" width="1000px" height="600px" id="canvas">
   </canvas>
+
+
 
 </body>
 

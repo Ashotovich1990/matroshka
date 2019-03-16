@@ -7,7 +7,7 @@ class GameOver {
         this.ctx.font = "80px Arial";
         this.ctx.fillStyle = "red";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`Game Over Loser!`, 350, 250);
+        this.ctx.fillText(`Game Over!`, 495, 250);
     }
 }
 

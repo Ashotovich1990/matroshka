@@ -86,6 +86,47 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/audio.js":
+/*!**********************!*\
+  !*** ./src/audio.js ***!
+  \**********************/
+/*! exports provided: playAudio */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "playAudio", function() { return playAudio; });
+
+const playAudio = () => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    
+    const audioElement = document.querySelector('audio');
+    
+    const playButton = document.querySelector('button');
+    
+    playButton.addEventListener('click', function() {
+
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+          
+        }
+    
+        if (this.dataset.playing === 'false') {
+           
+            audioElement.play();
+            this.dataset.playing = 'true';
+        } else if (this.dataset.playing === 'true') {
+            debugger
+            audioElement.pause();
+            this.dataset.playing = 'false';
+        }
+    
+    }, false);
+}
+
+/***/ }),
+
 /***/ "./src/basket.js":
 /*!***********************!*\
   !*** ./src/basket.js ***!
@@ -489,34 +530,44 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
+/* harmony import */ var _audio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./audio */ "./src/audio.js");
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas'); 
     const ctx = canvas.getContext('2d'); 
+    Object(_audio__WEBPACK_IMPORTED_MODULE_1__["playAudio"])();
 
-    let x;
-    const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
-    loop()
-    document.addEventListener('keypress', event => {
-        if (event.code === "KeyA") {
-            x = 1;
-        } else if (event.code === "KeyZ") {
-            x = 2;
-        } else if (event.code === "KeyK") {
-            x = 3;
-        } else if (event.code === "KeyM") {
-            x = 4;
-        }
-    })
-    x = x || 1;
-
-    game.fillHans();
+    document.getElementById("play").addEventListener("click", () => {
+        let x;
+        const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
+        loop()
+        document.addEventListener('keypress', event => {
+            if (event.code === "KeyA") {
+                x = 1;
+            } else if (event.code === "KeyZ") {
+                x = 2;
+            } else if (event.code === "KeyK") {
+                x = 3;
+            } else if (event.code === "KeyM") {
+                x = 4;
+            }
+        })
+        x = x || 1;
+       
+       
+        game.fillHans();
     
-    function loop() {
-        requestAnimationFrame(loop);
-        game.step(x);
-    }
+        function loop() {
+            if (game.score.broken <= 0) {
+                return cancelAnimationFrame(loop);
+            }
+            requestAnimationFrame(loop);
+            game.step(x);
+        } 
+    });
+
 });
 
 /***/ }),
@@ -567,6 +618,8 @@ class Game {
         this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_10__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
+        this.speed = 5;
+        this.intensity = 2000;
     }
 
     fillHans() {
@@ -586,13 +639,14 @@ class Game {
                 eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }, 1000)
+        }, 2000)
     }
 
     checkCollision(egg) {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
+                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
                 this.score.broken -= 1;
@@ -603,6 +657,7 @@ class Game {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
                 this.score.count += 1;
+                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -614,6 +669,7 @@ class Game {
        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
            if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
                this.score.count += 1
+               this.intensity -= 100
                egg.pos[1] += 1000;
         } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
             this.score.broken -= 1;
@@ -624,6 +680,7 @@ class Game {
         if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
                 this.score.count += 1
+                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -638,6 +695,7 @@ class Game {
     }
 
     step(x) {
+        const speed = this.speed
         this.board.move();
         this.matroshka.move(x)
         this.basket.move(x);
@@ -646,7 +704,8 @@ class Game {
         this.kremlin.move();
         this.eggs.forEach(egg => {
             if (egg) {
-                egg.move(10);
+                debugger
+                egg.move(6);
                 this.basket.move(x);
                 this.checkCollision(egg);
                 if (this.draw()) {
@@ -684,7 +743,7 @@ class GameOver {
         this.ctx.font = "80px Arial";
         this.ctx.fillStyle = "red";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`Game Over Loser!`, 350, 250);
+        this.ctx.fillText(`Game Over!`, 495, 250);
     }
 }
 
