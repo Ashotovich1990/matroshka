@@ -313,9 +313,9 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
-      this.pos[0] += 0.12 * x;
-      this.pos[1] += 0.04 * x;
-      this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+         this.pos[0] += 0.12 * x;
+         this.pos[1] += 0.04 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 390 && this.pos[1] <= 441) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
@@ -555,9 +555,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         x = x || 1;
-       
-       
-        game.fillHans();
+        
+
+        setInterval(() => {
+            if (game.intensity <= 5) {
+                game.intensity += 0.1;
+            }
+            game.speed += 1;
+            game.fillHans();
+        }, 2000) 
     
         function loop() {
             if (game.score.broken <= 0) {
@@ -618,12 +624,12 @@ class Game {
         this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_10__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 5;
-        this.intensity = 2000;
+        this.speed = 6;
+        this.intensity = 0;
     }
 
     fillHans() {
-        setInterval(() => {
+        for (let i = 0; i < this.intensity; i ++) {
             let chance = Math.random();
             let eggTopLeft;
             let eggBottomLeft;
@@ -639,14 +645,13 @@ class Game {
                 eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }, 2000)
+        }
     }
 
     checkCollision(egg) {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
                 this.score.broken -= 1;
@@ -657,7 +662,6 @@ class Game {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
                 this.score.count += 1;
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -669,7 +673,6 @@ class Game {
        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
            if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
                this.score.count += 1
-               this.intensity -= 100
                egg.pos[1] += 1000;
         } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
             this.score.broken -= 1;
@@ -680,7 +683,6 @@ class Game {
         if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
                 this.score.count += 1
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -704,8 +706,7 @@ class Game {
         this.kremlin.move();
         this.eggs.forEach(egg => {
             if (egg) {
-                debugger
-                egg.move(6);
+                egg.move(this.speed);
                 this.basket.move(x);
                 this.checkCollision(egg);
                 if (this.draw()) {

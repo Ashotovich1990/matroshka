@@ -24,12 +24,12 @@ class Game {
         this.gameOver = new GameOver(this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 5;
-        this.intensity = 2000;
+        this.speed = 6;
+        this.intensity = 0;
     }
 
     fillHans() {
-        setInterval(() => {
+        for (let i = 0; i < this.intensity; i ++) {
             let chance = Math.random();
             let eggTopLeft;
             let eggBottomLeft;
@@ -45,14 +45,13 @@ class Game {
                 eggBottomRight = new EggBottomRight(this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }, 2000)
+        }
     }
 
     checkCollision(egg) {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
                 this.score.broken -= 1;
@@ -63,7 +62,6 @@ class Game {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
                 this.score.count += 1;
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -75,7 +73,6 @@ class Game {
        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
            if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
                this.score.count += 1
-               this.intensity -= 100
                egg.pos[1] += 1000;
         } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
             this.score.broken -= 1;
@@ -86,7 +83,6 @@ class Game {
         if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
                 this.score.count += 1
-                this.intensity -= 100
                 egg.pos[1] += 1000;
             } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
                 this.score.broken -= 1;
@@ -110,8 +106,7 @@ class Game {
         this.kremlin.move();
         this.eggs.forEach(egg => {
             if (egg) {
-                debugger
-                egg.move(6);
+                egg.move(this.speed);
                 this.basket.move(x);
                 this.checkCollision(egg);
                 if (this.draw()) {

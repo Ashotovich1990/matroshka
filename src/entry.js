@@ -22,9 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         x = x || 1;
-       
-       
-        game.fillHans();
+        
+
+        setInterval(() => {
+            if (game.intensity <= 5) {
+                game.intensity += 0.1;
+            }
+            game.speed += 1;
+            game.fillHans();
+        }, 2000) 
     
         function loop() {
             if (game.score.broken <= 0) {
