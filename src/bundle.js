@@ -98,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 class Basket  {
     constructor(ctx) {
         this.ctx = ctx;
+        this.pos = [];
     }
 
     drawBasket(x,y) {
@@ -116,13 +117,17 @@ class Basket  {
 
     move(direction) {
         if (direction === 1) {
-            this.drawBasket(220, 280);
+            this.pos = [220,280];
+            this.drawBasket(...this.pos);
         } else if (direction === 2) {
-            this.drawBasket(220, 430)
+            this.pos = [220,430];
+            this.drawBasket(...this.pos)
         } else if ( direction === 3) {
-            this.drawBasket(760, 280);
+            this.pos = [760,280];
+            this.drawBasket(...this.pos);
         } else if (direction === 4) {
-            this.drawBasket(760, 430)
+            this.pos = [760,430]
+            this.drawBasket(...this.pos)
         }
     }
 
@@ -203,10 +208,23 @@ class Board {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+const chicken = new Image ();
+chicken.src = './images/chicken.png'
+
+const chickenRotate = new Image();
+chickenRotate.src = './images/chicken-rotate.png'
+
+
 class Chicken {
-    constructor(ctx, image, x) {
+    constructor(ctx, imgCode, x) {
        this.ctx = ctx;
-       this.image = image;
+       let img;
+       if (imgCode === 1) {
+           img = chicken;
+       } else {
+           img = chickenRotate;
+       }
+       this.image = img;
        this.x = x;
     }
     
@@ -254,9 +272,15 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
-      this.pos[0] += 0.1 * x;
+      this.pos[0] += 0.12 * x;
       this.pos[1] += 0.04 * x;
       this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 390 && this.pos[1] <= 441) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 441) {
+         this.pos[1] += 100 * x;
       }
 
    }
@@ -300,10 +324,16 @@ class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
-         this.pos[0] -= 0.1 * x;
+         this.pos[0] -= 0.12 * x;
          this.pos[1] += 0.04 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      }
+      } else if (this.pos[1] > 390 && this.pos[1] <= 441) {
+        this.pos[0] += 0 * x;
+        this.pos[1] += 0.1 * x;
+        this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+     } else if (this.pos[1] > 441) {
+        this.pos[1] += 100 * x;
+     }
       
    }
 
@@ -381,8 +411,12 @@ class EggTopLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
-         this.pos[0] += 0.1 * x;
+         this.pos[0] += 0.12 * x;
          this.pos[1] += 0.04 * x;
+         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 239 && this.pos[1] <= 290) {
+         this.pos[0] += 0 * x;
+         this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
       }
       
@@ -428,10 +462,14 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
-         this.pos[0] -= 0.1 * x;
+         this.pos[0] -= 0.12 * x;
          this.pos[1] += 0.04 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      }
+      } else if (this.pos[1] > 239 && this.pos[1] <= 290) {
+        this.pos[0] += 0 * x;
+        this.pos[1] += 0.1 * x;
+        this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+     }
       
    }
 
@@ -454,26 +492,31 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener("DOMContentLoaded", () => {
-   let x;
-   const game = new _game__WEBPACK_IMPORTED_MODULE_0__["Game"]();
-   loop()
-   document.addEventListener('keypress', event => {
-       if (event.code === "KeyA") {
-           x = 1;
-       } else if (event.code === "KeyZ") {
-           x = 2;
-       } else if (event.code === "KeyK") {
-           x = 3;
-       } else if (event.code === "KeyM") {
-           x = 4;
-       }
-   })
-   x = x || 1;
-   
-   function loop() {
-    requestAnimationFrame(loop);
-    game.play(x);
-   }
+    const canvas = document.getElementById('canvas'); 
+    const ctx = canvas.getContext('2d'); 
+
+    let x;
+    const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
+    loop()
+    document.addEventListener('keypress', event => {
+        if (event.code === "KeyA") {
+            x = 1;
+        } else if (event.code === "KeyZ") {
+            x = 2;
+        } else if (event.code === "KeyK") {
+            x = 3;
+        } else if (event.code === "KeyM") {
+            x = 4;
+        }
+    })
+    x = x || 1;
+
+    game.fillHans();
+    
+    function loop() {
+        requestAnimationFrame(loop);
+        game.step(x);
+    }
 });
 
 /***/ }),
@@ -482,12 +525,11 @@ document.addEventListener("DOMContentLoaded", () => {
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/*! exports provided: Game */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Game", function() { return Game; });
 /* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ "./src/board.js");
 /* harmony import */ var _matroshka__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./matroshka */ "./src/matroshka.js");
 /* harmony import */ var _basket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./basket */ "./src/basket.js");
@@ -497,6 +539,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eggs/bottom_left_egg */ "./src/eggs/bottom_left_egg.js");
 /* harmony import */ var _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./eggs/top_right_egg */ "./src/eggs/top_right_egg.js");
 /* harmony import */ var _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./eggs/bottom_right_egg */ "./src/eggs/bottom_right_egg.js");
+/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./score */ "./src/score.js");
+/* harmony import */ var _game_over__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./game_over */ "./src/game_over.js");
 
 
 
@@ -507,38 +551,144 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Game() {
-    const canvas = document.getElementById('canvas'); 
-    const ctx = canvas.getContext('2d'); 
 
-    const chicken = new Image ();
-    chicken.src = './images/chicken.png'
 
-    const chickenRotate = new Image();
-    chickenRotate.src = './images/chicken-rotate.png'
+class Game {
+    constructor(ctx) {
+        this.ctx = ctx
+        this.board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"](this.ctx);
+        this.matroshka = new _matroshka__WEBPACK_IMPORTED_MODULE_1__["default"](this.ctx);
+        this.basket = new _basket__WEBPACK_IMPORTED_MODULE_2__["default"](this.ctx);
+        this.chickenLeft = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx, 1, 10)
+        this.chickenRight = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx, 2, 890)
+        this.kremlin = new _kremlin__WEBPACK_IMPORTED_MODULE_4__["default"](this.ctx);
+        this.eggBottomLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
+        this.score = new _score__WEBPACK_IMPORTED_MODULE_9__["default"](this.ctx, 0, 3);
+        this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_10__["default"](this.ctx);
+        this.eggs = [];
+        this.checkCollision = this.checkCollision.bind(this);
+    }
 
-    const board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
-    const matroshka = new _matroshka__WEBPACK_IMPORTED_MODULE_1__["default"](ctx);
-    const basket = new _basket__WEBPACK_IMPORTED_MODULE_2__["default"](ctx);
-    const chickenLeft = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](ctx, chicken, 10)
-    const chickenRight = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](ctx, chickenRotate, 890)
-    const kremlin = new _kremlin__WEBPACK_IMPORTED_MODULE_4__["default"](ctx);
-    const eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](ctx);
-    const eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__["default"](ctx);
-    const eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__["default"](ctx);
-    const eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](ctx);
-    const EGGS = [eggTopLeft, eggBottomLeft, eggTopRight, eggBottomRight]
+    fillHans() {
+        setInterval(() => {
+            let chance = Math.random();
+            let eggTopLeft;
+            let eggBottomLeft;
+            let eggTopRight;
+            let eggBottomRight;
+            if (chance >= 0.750) {
+                eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
+            } else if (chance >= 0.500 && chance < 0.750) {
+                eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__["default"](this.ctx);
+            } else if (chance >= 0.250 && chance < 0.500) {
+                eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__["default"](this.ctx);
+            } else {
+                eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
+            }
+            this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
+        }, 1000)
+    }
 
-    this.play = (x) => {
-        board.move();
-        matroshka.move(x)
-        basket.move(x);
-        chickenLeft.move();
-        chickenRight.move();
-        kremlin.move();
-        EGGS.forEach(egg => egg.move(5));
+    checkCollision(egg) {
+        if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
+            if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
+                this.score.count += 1;
+                egg.pos[1] += 1000;
+            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
+                this.score.broken -= 1;
+                egg.pos[1] += 1000;
+            }
+        }
+
+        if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
+            if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
+                this.score.count += 1;
+                egg.pos[1] += 1000;
+            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
+                this.score.broken -= 1;
+                egg.pos[1] += 1000;
+            }
+        }
+
+
+       if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
+           if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
+               this.score.count += 1
+               egg.pos[1] += 1000;
+        } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
+            this.score.broken -= 1;
+            egg.pos[1] += 1000;
+            }
+        }
+
+        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
+            if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
+                this.score.count += 1
+                egg.pos[1] += 1000;
+            } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
+                this.score.broken -= 1;
+                egg.pos[1] += 1000;
+             }
+         }
+    
+    }
+
+    draw() {
+        return (this.score.broken <= 0);
+    }
+
+    step(x) {
+        this.board.move();
+        this.matroshka.move(x)
+        this.basket.move(x);
+        this.chickenLeft.move();
+        this.chickenRight.move();
+        this.kremlin.move();
+        this.eggs.forEach(egg => {
+            if (egg) {
+                egg.move(10);
+                this.basket.move(x);
+                this.checkCollision(egg);
+                if (this.draw()) {
+                  this.gameOver.move();
+                }
+                this.score.move();
+            }
+        });
+        console.log(this.eggs.length)
+    }
+
+   
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Game);
+
+
+/***/ }),
+
+/***/ "./src/game_over.js":
+/*!**************************!*\
+  !*** ./src/game_over.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class GameOver {
+    constructor(ctx) {
+        this.ctx = ctx;
+    }
+
+    move() {
+        this.ctx.font = "80px Arial";
+        this.ctx.fillStyle = "red";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(`Game Over Loser!`, 350, 250);
     }
 }
+
+/* harmony default export */ __webpack_exports__["default"] = (GameOver);
 
 /***/ }),
 
@@ -612,6 +762,53 @@ class Matroshka  {
 
 /* harmony default export */ __webpack_exports__["default"] = (Matroshka);
 
+
+/***/ }),
+
+/***/ "./src/score.js":
+/*!**********************!*\
+  !*** ./src/score.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const egg = new Image();
+egg.src = './images/egg_one.png'
+
+const egg_broken = new Image();
+egg_broken.src = './images/broken_egg.png'
+
+class Score {
+    constructor(ctx, count, broken) {
+        this.ctx = ctx;
+        this.count = count;
+        this.broken = broken
+    }
+
+    move() {
+        this.ctx.drawImage(egg, 50, 15, 65, 65)
+        this.ctx.font = "60px Comic Sans MS";
+        this.ctx.fillStyle = "#8B0000";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(`${this.count}`, 150, 70);
+        
+        if (this.broken === 2) {
+            this.ctx.drawImage(egg_broken, 650, 15, 80, 80)
+        } else if (this.broken === 1) {
+            this.ctx.drawImage(egg_broken, 650, 15, 80, 80)
+            this.ctx.drawImage(egg_broken, 750, 15, 80, 80)
+        } else if (this.broken <= 0) {
+            this.ctx.drawImage(egg_broken, 650, 15, 80, 80)
+            this.ctx.drawImage(egg_broken, 750, 15, 80, 80)
+            this.ctx.drawImage(egg_broken, 850, 15, 80, 80)
+
+        }
+    }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Score);
 
 /***/ })
 

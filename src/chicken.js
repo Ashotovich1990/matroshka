@@ -1,7 +1,20 @@
+const chicken = new Image ();
+chicken.src = './images/chicken.png'
+
+const chickenRotate = new Image();
+chickenRotate.src = './images/chicken-rotate.png'
+
+
 class Chicken {
-    constructor(ctx, image, x) {
+    constructor(ctx, imgCode, x) {
        this.ctx = ctx;
-       this.image = image;
+       let img;
+       if (imgCode === 1) {
+           img = chicken;
+       } else {
+           img = chickenRotate;
+       }
+       this.image = img;
        this.x = x;
     }
     

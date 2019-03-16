@@ -1,6 +1,7 @@
 class Basket  {
     constructor(ctx) {
         this.ctx = ctx;
+        this.pos = [];
     }
 
     drawBasket(x,y) {
@@ -19,13 +20,17 @@ class Basket  {
 
     move(direction) {
         if (direction === 1) {
-            this.drawBasket(220, 280);
+            this.pos = [220,280];
+            this.drawBasket(...this.pos);
         } else if (direction === 2) {
-            this.drawBasket(220, 430)
+            this.pos = [220,430];
+            this.drawBasket(...this.pos)
         } else if ( direction === 3) {
-            this.drawBasket(760, 280);
+            this.pos = [760,280];
+            this.drawBasket(...this.pos);
         } else if (direction === 4) {
-            this.drawBasket(760, 430)
+            this.pos = [760,430]
+            this.drawBasket(...this.pos)
         }
     }
 
