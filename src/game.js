@@ -25,11 +25,11 @@ class Game {
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
         this.speed = 6;
-        this.intensity = 0;
+        // this.intensity = 0;
     }
 
     fillHans() {
-        for (let i = 0; i < this.intensity; i ++) {
+        setInterval(() => {
             let chance = Math.random();
             let eggTopLeft;
             let eggBottomLeft;
@@ -45,50 +45,59 @@ class Game {
                 eggBottomRight = new EggBottomRight(this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }
+        }, 1000)
     }
 
     checkCollision(egg) {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
-                egg.pos[1] += 1000;
-            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
+                egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1002;
+        } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] < 300) { 
+            egg.pos[1] = 1000;
         }
 
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
                 this.score.count += 1;
-                egg.pos[1] += 1000;
-            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
+                egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1002;
+        } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] > 400) {
+            
+            egg.pos[1] = 1000;
         }
 
 
        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
            if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
                this.score.count += 1
-               egg.pos[1] += 1000;
-        } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
-            this.score.broken -= 1;
-            egg.pos[1] += 1000;
+               egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1003;
+        } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] < 300) {
+            egg.pos[1] = 1000;
         }
 
         if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
                 this.score.count += 1
-                egg.pos[1] += 1000;
-            } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
-             }
-         }
+                egg.pos[1] = 1001;
+            }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1003;
+        } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] > 400) {
+            egg.pos[1] = 1000;
+        }
     
     }
 
@@ -97,7 +106,6 @@ class Game {
     }
 
     step(x) {
-        const speed = this.speed
         this.board.move();
         this.matroshka.move(x)
         this.basket.move(x);

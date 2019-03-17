@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         x = x || 1;
         
-
-        setInterval(() => {
-            if (game.intensity <= 5) {
-                game.intensity += 0.1;
-            }
-            game.speed += 1;
-            game.fillHans();
-        }, 2000) 
     
+        setInterval(() => {
+            if (game.speed < 20) {
+                game.speed += 0.1;
+            }
+        }, 1000) 
+        
+        game.fillHans();
+
         function loop() {
             if (game.score.broken <= 0) {
                 return cancelAnimationFrame(loop);

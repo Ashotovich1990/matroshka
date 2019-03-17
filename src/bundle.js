@@ -316,13 +316,11 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[0] += 0.12 * x;
          this.pos[1] += 0.04 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 390 && this.pos[1] <= 441) {
+      } else if (this.pos[1] > 390 && this.pos[1] <= 442) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 441) {
-         this.pos[1] += 100 * x;
-      }
+      } 
 
    }
   
@@ -368,13 +366,11 @@ class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[0] -= 0.12 * x;
          this.pos[1] += 0.04 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 390 && this.pos[1] <= 441) {
+      } else if (this.pos[1] > 390 && this.pos[1] <= 442) {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-     } else if (this.pos[1] > 441) {
-        this.pos[1] += 100 * x;
-     }
+     } 
       
    }
 
@@ -510,7 +506,7 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-     }
+     }  
       
    }
 
@@ -556,15 +552,15 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         x = x || 1;
         
-
-        setInterval(() => {
-            if (game.intensity <= 5) {
-                game.intensity += 0.1;
-            }
-            game.speed += 1;
-            game.fillHans();
-        }, 2000) 
     
+        setInterval(() => {
+            if (game.speed < 20) {
+                game.speed += 0.1;
+            }
+        }, 1000) 
+        
+        game.fillHans();
+
         function loop() {
             if (game.score.broken <= 0) {
                 return cancelAnimationFrame(loop);
@@ -625,11 +621,11 @@ class Game {
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
         this.speed = 6;
-        this.intensity = 0;
+        // this.intensity = 0;
     }
 
     fillHans() {
-        for (let i = 0; i < this.intensity; i ++) {
+        setInterval(() => {
             let chance = Math.random();
             let eggTopLeft;
             let eggBottomLeft;
@@ -645,50 +641,59 @@ class Game {
                 eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }
+        }, 1000)
     }
 
     checkCollision(egg) {
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
-                egg.pos[1] += 1000;
-            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] < 300) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
+                egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1002;
+        } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] < 300) { 
+            egg.pos[1] = 1000;
         }
 
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] > 400) {
                 this.score.count += 1;
-                egg.pos[1] += 1000;
-            } else if ((egg.pos[1] > 441 && egg.pos[1] < 442) && egg.pos[0] > 400) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
+                egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1002;
+        } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] > 400) {
+            
+            egg.pos[1] = 1000;
         }
 
 
        if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] < 300) {
            if (this.basket.pos[1] === 280 && this.basket.pos[0] < 300) {
                this.score.count += 1
-               egg.pos[1] += 1000;
-        } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] < 300) {
-            this.score.broken -= 1;
-            egg.pos[1] += 1000;
+               egg.pos[1] = 1001;
             }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1003;
+        } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] < 300) {
+            egg.pos[1] = 1000;
         }
 
         if (egg.pos[1] > 255 && egg.pos[1] < 290 && egg.pos[0] > 400) {
             if (this.basket.pos[1] === 280 && this.basket.pos[0] > 400) {
                 this.score.count += 1
-                egg.pos[1] += 1000;
-            } else if (egg.pos[1] > 289 && egg.pos[1] < 290 && egg.pos[0] > 400) {
-                this.score.broken -= 1;
-                egg.pos[1] += 1000;
-             }
-         }
+                egg.pos[1] = 1001;
+            }
+        } else if (egg.pos[1] === 1000) {
+            this.score.broken -= 1 
+            egg.pos[1] = 1003;
+        } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] > 400) {
+            egg.pos[1] = 1000;
+        }
     
     }
 
@@ -697,7 +702,6 @@ class Game {
     }
 
     step(x) {
-        const speed = this.speed
         this.board.move();
         this.matroshka.move(x)
         this.basket.move(x);
@@ -744,7 +748,7 @@ class GameOver {
         this.ctx.font = "80px Arial";
         this.ctx.fillStyle = "red";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`Game Over!`, 495, 250);
+        this.ctx.fillText(`Game Over`, 495, 250);
     }
 }
 
