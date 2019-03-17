@@ -336,7 +336,10 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-      } 
+      } else if (this.pos[1] > 1001 && this.pos[1] < 1200) {
+         this.ctx.drawImage(this.imageSeven, 200, 550, 30, 30)
+         this.pos[1] += 5
+      }
 
    }
   
@@ -386,7 +389,10 @@ class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-     } 
+     } else if (this.pos[1] > 1001 && this.pos[1] < 1200) {
+      this.ctx.drawImage(this.imageSix, 750, 550, 30, 30)
+      this.pos[1] += 5
+   }
       
    }
 
@@ -417,12 +423,20 @@ egg_three.src = './images/egg_three.png'
 const egg_four = new Image();
 egg_four.src = './images/egg_four.png'
 
+const borken_egg_two = new Image();
+borken_egg_two.src = './images/broken_egg_two.png'
+
+const borken_egg_one = new Image();
+borken_egg_one.src = './images/broken_egg_one.png'
+
 class Egg {
     constructor() {
       this.imageOne = egg_one;
       this.imageTwo = egg_two;
       this.imageThree = egg_three;
       this.imageFour = egg_four;
+      this.imageSix = borken_egg_two;
+      this.imageSeven = borken_egg_one;
     }
 
 }
@@ -471,6 +485,9 @@ class EggTopLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 1001 && this.pos[1] < 1200) {
+         this.ctx.drawImage(this.imageSeven, 230, 550, 30, 30)
+         this.pos[1] += 5
       }
       
    }
@@ -522,7 +539,10 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
-     }  
+      }  else if (this.pos[1] > 1001 && this.pos[1] < 1200) {
+         this.ctx.drawImage(this.imageSix, 730, 550, 30, 30)
+         this.pos[1] += 5
+      }
       
    }
 
@@ -679,13 +699,16 @@ class Game {
     }
 
     checkCollision(egg) {
+        if (egg.pos[1] === 1053 || egg.pos[1] === 1052) {
+            return this.score.broken -= 1;
+        }
+
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1002;
         } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] < 300) { 
             egg.pos[1] = 1000;
@@ -697,7 +720,6 @@ class Game {
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1002;
         } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] > 400) {
             
@@ -711,7 +733,6 @@ class Game {
                egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1003;
         } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] < 300) {
             egg.pos[1] = 1000;
@@ -723,7 +744,6 @@ class Game {
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1003;
         } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] > 400) {
             egg.pos[1] = 1000;

@@ -46,13 +46,16 @@ class Game {
     }
 
     checkCollision(egg) {
+        if (egg.pos[1] === 1053 || egg.pos[1] === 1052) {
+            return this.score.broken -= 1;
+        }
+
         if ((egg.pos[1] > 402 && egg.pos[1] < 442) && egg.pos[0] < 300) {
             if (this.basket.pos[1] === 430 && this.basket.pos[0] < 300) {
                 this.score.count += 1;
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1002;
         } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] < 300) { 
             egg.pos[1] = 1000;
@@ -64,7 +67,6 @@ class Game {
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1002;
         } else if ((egg.pos[1] >= 442 && egg.pos[1] < 999) && egg.pos[0] > 400) {
             
@@ -78,7 +80,6 @@ class Game {
                egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1003;
         } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] < 300) {
             egg.pos[1] = 1000;
@@ -90,7 +91,6 @@ class Game {
                 egg.pos[1] = 1001;
             }
         } else if (egg.pos[1] === 1000) {
-            this.score.broken -= 1 
             egg.pos[1] = 1003;
         } else if (egg.pos[1] >= 290 && egg.pos[1] < 299 && egg.pos[0] > 400) {
             egg.pos[1] = 1000;
