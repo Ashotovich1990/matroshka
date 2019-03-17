@@ -312,19 +312,19 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
       if (this.pos[1] <= 333) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
-         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 333 && this.pos[1] <= 350) {
          this.pos[0] += 0.1 * x;
          this.pos[1] += 0.06 * x;
-         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 350 && this.pos[1] <= 375) {
-         this.pos[0] += 0.1 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 350 && this.pos[1] <= 385) {
+         this.pos[0] += 0.12 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
+      } else if (this.pos[1] > 385 && this.pos[1] <= 390) {
          this.pos[0] += 0.12 * x;
          this.pos[1] += 0.04 * x;
-         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 390 && this.pos[1] <= 442) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
@@ -367,14 +367,14 @@ class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
          this.pos[0] -= 0.1 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 350 && this.pos[1] <= 375) {
-         this.pos[0] -= 0.1 * x;
+      } else if (this.pos[1] > 350 && this.pos[1] <= 385) {
+         this.pos[0] -= 0.12 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 375 && this.pos[1] <= 390) {
+      } else if (this.pos[1] > 385 && this.pos[1] <= 390) {
          this.pos[0] -= 0.12 * x;
          this.pos[1] += 0.04 * x;
-         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 390 && this.pos[1] <= 442) {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
@@ -444,22 +444,22 @@ class EggTopLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 180) {
+      if (this.pos[1] <= 182) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
-         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 180 && this.pos[1] <= 200) {
-         this.pos[0] += 0.1 * x;
-         this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 200 && this.pos[1] <= 225) {
+      } else if (this.pos[1] > 182 && this.pos[1] <= 200) {
          this.pos[0] += 0.1 * x;
+         this.pos[1] += 0.07 * x;
+         this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
+      } else if (this.pos[1] > 200 && this.pos[1] <= 235) {
+         this.pos[0] += 0.13 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
-         this.pos[0] += 0.12 * x;
+      } else if (this.pos[1] > 235 && this.pos[1] <= 239) {
+         this.pos[0] += 0.13 * x;
          this.pos[1] += 0.04 * x;
-         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+         this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 239 && this.pos[1] <= 290) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
@@ -495,22 +495,22 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 180) {
+      if (this.pos[1] <= 182) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 180 && this.pos[1] <= 200) {
+      } else if (this.pos[1] > 182 && this.pos[1] <= 200) {
          this.pos[0] -= 0.1 * x;
-         this.pos[1] += 0.06 * x;
+         this.pos[1] += 0.07 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 200 && this.pos[1] <= 225) {
-         this.pos[0] -= 0.1 * x;
+      } else if (this.pos[1] > 200 && this.pos[1] <= 235) {
+         this.pos[0] -= 0.13 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 225 && this.pos[1] <= 239) {
-         this.pos[0] -= 0.12 * x;
+      } else if (this.pos[1] > 235 && this.pos[1] <= 239) {
+         this.pos[0] -= 0.13 * x;
          this.pos[1] += 0.04 * x;
-         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
+         this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
       } else if (this.pos[1] > 239 && this.pos[1] <= 290) {
         this.pos[0] += 0 * x;
         this.pos[1] += 0.1 * x;
@@ -632,7 +632,7 @@ class Game {
         this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 8;
+        this.speed = 7;
     }
 
     fillHans(x) {

@@ -19,7 +19,7 @@ class Game {
         this.gameOver = new GameOver(this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 8;
+        this.speed = 7;
     }
 
     fillHans(x) {
