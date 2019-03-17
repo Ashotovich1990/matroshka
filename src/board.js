@@ -13,36 +13,36 @@ class Board {
     move()  {
         this.ctx.drawImage(moscow,0,0, 1000, 600);
         this.ctx.beginPath();
-        this.ctx.moveTo(0,200)
-        this.ctx.lineTo(80,200)
-        this.ctx.lineTo(170,250)
+        this.ctx.moveTo(0,210)
+        this.ctx.lineTo(80,210)
+        this.ctx.lineTo(200,260)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(0,350)
-        this.ctx.lineTo(80,350)
-        this.ctx.lineTo(170,400)
+        this.ctx.moveTo(0,360)
+        this.ctx.lineTo(80,360)
+        this.ctx.lineTo(200,410)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(1000,350)
-        this.ctx.lineTo(920,350)
-        this.ctx.lineTo(830,400)
+        this.ctx.moveTo(1000,360)
+        this.ctx.lineTo(920,360)
+        this.ctx.lineTo(800,410)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(1000,200)
-        this.ctx.lineTo(920,200)
-        this.ctx.lineTo(830,250)
+        this.ctx.moveTo(1000,210)
+        this.ctx.lineTo(920,210)
+        this.ctx.lineTo(800,260)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();

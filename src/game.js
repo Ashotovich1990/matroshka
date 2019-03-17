@@ -25,16 +25,15 @@ class Game {
     fillHans(x) {
         let chance = Math.random();
         chance = x * chance
-        if (chance <= 0.5) {
+        if (chance <= 1) {
             this.generateEggs(1);
-        } else if (chance > 0.5 && chance <= 0.85) {
+        } else if (chance > 1 && chance <= 2) {
             this.generateEggs(2);
-        }
-        else if (chance > 0.85 && chance <= 0.95) {
+        } else if (chance > 2 && chance <= 4.5) {
             this.generateEggs(3);
-        } else if (chance > 0.95 && chance <= 1) {
+        } else if (chance > 4.5 && chance <= 5) {
             this.generateEggs(4);
-        }
+        } 
     }
 
     generateEggs(difficultyLevel) {

@@ -203,36 +203,36 @@ class Board {
     move()  {
         this.ctx.drawImage(moscow,0,0, 1000, 600);
         this.ctx.beginPath();
-        this.ctx.moveTo(0,200)
-        this.ctx.lineTo(80,200)
-        this.ctx.lineTo(170,250)
+        this.ctx.moveTo(0,210)
+        this.ctx.lineTo(80,210)
+        this.ctx.lineTo(200,260)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(0,350)
-        this.ctx.lineTo(80,350)
-        this.ctx.lineTo(170,400)
+        this.ctx.moveTo(0,360)
+        this.ctx.lineTo(80,360)
+        this.ctx.lineTo(200,410)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(1000,350)
-        this.ctx.lineTo(920,350)
-        this.ctx.lineTo(830,400)
+        this.ctx.moveTo(1000,360)
+        this.ctx.lineTo(920,360)
+        this.ctx.lineTo(800,410)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
 
         this.ctx.beginPath();
-        this.ctx.moveTo(1000,200)
-        this.ctx.lineTo(920,200)
-        this.ctx.lineTo(830,250)
+        this.ctx.moveTo(1000,210)
+        this.ctx.lineTo(920,210)
+        this.ctx.lineTo(800,260)
         this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
@@ -279,8 +279,8 @@ class Chicken {
     }
     
     move() {
-       this.ctx.drawImage(this.image, this.x, 100, 100, 100)
-       this.ctx.drawImage(this.image, this.x, 250, 100, 100)   
+       this.ctx.drawImage(this.image, this.x, 110, 100, 100)
+       this.ctx.drawImage(this.image, this.x, 260, 100, 100)   
     }
 
 }
@@ -309,11 +309,11 @@ class EggBottomLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 333) {
+      if (this.pos[1] <= 337) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 333 && this.pos[1] <= 350) {
+      } else if (this.pos[1] > 337 && this.pos[1] <= 350) {
          this.pos[0] += 0.1 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
@@ -359,11 +359,11 @@ class EggBottomRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 333) {
+      if (this.pos[1] <= 337) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 333 && this.pos[1] <= 350) {
+      } else if (this.pos[1] > 337 && this.pos[1] <= 350) {
          this.pos[0] -= 0.1 * x;
          this.pos[1] += 0.06 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
@@ -444,11 +444,11 @@ class EggTopLeft extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 182) {
+      if (this.pos[1] <= 186) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageTwo, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 182 && this.pos[1] <= 200) {
+      } else if (this.pos[1] > 186 && this.pos[1] <= 200) {
          this.pos[0] += 0.1 * x;
          this.pos[1] += 0.07 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
@@ -495,11 +495,11 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
    }
 
    move(x) {
-      if (this.pos[1] <= 182) {
+      if (this.pos[1] <= 186) {
          this.pos[0] += 0 * x;
          this.pos[1] += 0.1 * x;
          this.ctx.drawImage(this.imageFour, this.pos[0], this.pos[1], 30, 30)
-      } else if (this.pos[1] > 182 && this.pos[1] <= 200) {
+      } else if (this.pos[1] > 186 && this.pos[1] <= 200) {
          this.pos[0] -= 0.1 * x;
          this.pos[1] += 0.07 * x;
          this.ctx.drawImage(this.imageOne, this.pos[0], this.pos[1], 30, 30)
@@ -569,16 +569,29 @@ document.addEventListener("DOMContentLoaded", () => {
         let level = 1
         
         game.fillHans(1);
-        setInterval(() => {
+
+        const levelOne = setInterval(() => {
             if (game.speed < 20) {
-                game.speed += 0.05;
+                game.speed += 0.1;
             }
             game.fillHans(level);
         }, 2000) 
-
+      
         setInterval(() => {
-            level += 1;
-        }, 50000) 
+            if (level < 5) {
+                level += 1;
+            }
+        }, 30000) 
+
+        setTimeout(() => {
+            clearInterval(levelOne)
+            setInterval(() => {
+                if (game.speed < 22) {
+                    game.speed += 0.1;
+                }
+                game.fillHans(level);
+            }, 1000) 
+        }, 180000)
 
         function loop() {
             if (game.score.broken <= 0) {
@@ -638,16 +651,15 @@ class Game {
     fillHans(x) {
         let chance = Math.random();
         chance = x * chance
-        if (chance <= 0.5) {
+        if (chance <= 1) {
             this.generateEggs(1);
-        } else if (chance > 0.5 && chance <= 0.85) {
+        } else if (chance > 1 && chance <= 2) {
             this.generateEggs(2);
-        }
-        else if (chance > 0.85 && chance <= 0.95) {
+        } else if (chance > 2 && chance <= 4.5) {
             this.generateEggs(3);
-        } else if (chance > 0.95 && chance <= 1) {
+        } else if (chance > 4.5 && chance <= 5) {
             this.generateEggs(4);
-        }
+        } 
     }
 
     generateEggs(difficultyLevel) {

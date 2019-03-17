@@ -30,16 +30,29 @@ document.addEventListener("DOMContentLoaded", () => {
         let level = 1
         
         game.fillHans(1);
-        setInterval(() => {
+
+        const levelOne = setInterval(() => {
             if (game.speed < 20) {
-                game.speed += 0.05;
+                game.speed += 0.1;
             }
             game.fillHans(level);
         }, 2000) 
-
+      
         setInterval(() => {
-            level += 1;
-        }, 50000) 
+            if (level < 5) {
+                level += 1;
+            }
+        }, 30000) 
+
+        setTimeout(() => {
+            clearInterval(levelOne)
+            setInterval(() => {
+                if (game.speed < 22) {
+                    game.speed += 0.1;
+                }
+                game.fillHans(level);
+            }, 1000) 
+        }, 180000)
 
         function loop() {
             if (game.score.broken <= 0) {

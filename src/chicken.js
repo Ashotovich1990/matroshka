@@ -19,8 +19,8 @@ class Chicken {
     }
     
     move() {
-       this.ctx.drawImage(this.image, this.x, 100, 100, 100)
-       this.ctx.drawImage(this.image, this.x, 250, 100, 100)   
+       this.ctx.drawImage(this.image, this.x, 110, 100, 100)
+       this.ctx.drawImage(this.image, this.x, 260, 100, 100)   
     }
 
 }
