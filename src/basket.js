@@ -1,6 +1,10 @@
+const image = new Image();
+image.src = './images/basket.png'
+
 class Basket  {
     constructor(ctx) {
         this.ctx = ctx;
+        this.image = image;
         this.pos = [];
     }
 
@@ -17,19 +21,23 @@ class Basket  {
         this.ctx.stroke();
         this.ctx.closePath();
     }
+    
+    drawBasket(x,y) {
+        this.ctx.drawImage(this.image, x, y, 80, 80)
+    }
 
     move(direction) {
         if (direction === 1) {
-            this.pos = [220,280];
+            this.pos = [200,280];
             this.drawBasket(...this.pos);
         } else if (direction === 2) {
-            this.pos = [220,430];
+            this.pos = [200,430];
             this.drawBasket(...this.pos)
         } else if ( direction === 3) {
-            this.pos = [760,280];
+            this.pos = [720,280];
             this.drawBasket(...this.pos);
         } else if (direction === 4) {
-            this.pos = [760,430]
+            this.pos = [720,430]
             this.drawBasket(...this.pos)
         }
     }

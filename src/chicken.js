@@ -4,7 +4,6 @@ chicken.src = './images/chicken.png'
 const chickenRotate = new Image();
 chickenRotate.src = './images/chicken-rotate.png'
 
-
 class Chicken {
     constructor(ctx, imgCode, x) {
        this.ctx = ctx;
