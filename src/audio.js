@@ -19,7 +19,6 @@ export const playAudio = () => {
             audioElement.play();
             this.dataset.playing = 'true';
         } else if (this.dataset.playing === 'true') {
-            debugger
             audioElement.pause();
             this.dataset.playing = 'false';
         }

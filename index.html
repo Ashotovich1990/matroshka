@@ -3,20 +3,22 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./stylesheets/reset.css" />
+  <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css" />
   <script src="src/bundle.js"></script>
 </head>
 
 <body>
 
   <h1>Matroshka collecting eggs</h1>
-  <button data-playing="false" role="switch" aria-checked="false">
-      <span>Sound On/Off</span>
+  <button id='sound' data-playing="false" role="switch" aria-checked="false">
+    <span>Sound On/Off</span>
   </button>
   <Button id="play">Start A New Game</Button>
   <audio loop="true" src="kalinka.mp3">
     Your browser does not support the audio tag.
   </audio>
-  <canvas z-index="-1000" width="1000px" height="600px" id="canvas">
+  <canvas width="1000px" height="600px" id="canvas">
   </canvas>
 
 

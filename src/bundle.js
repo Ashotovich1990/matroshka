@@ -117,7 +117,6 @@ const playAudio = () => {
             audioElement.play();
             this.dataset.playing = 'true';
         } else if (this.dataset.playing === 'true') {
-            debugger
             audioElement.pause();
             this.dataset.playing = 'false';
         }
@@ -188,19 +187,26 @@ class Basket  {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _chicken__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chicken */ "./src/chicken.js");
+
+
+const moscow = new Image();
+moscow.src = './images/moscow.png'
+
 class Board {
    constructor(ctx) {
-        this.ctx = ctx;
-   }
-
+       this.ctx = ctx;
+       this.chickenLeft = new _chicken__WEBPACK_IMPORTED_MODULE_0__["default"](this.ctx, 1, 10)
+       this.chickenRight = new _chicken__WEBPACK_IMPORTED_MODULE_0__["default"](this.ctx, 2, 890)
+    }
+    
     move()  {
-        this.ctx.fillStyle = "#D8D8D8"; 
-        this.ctx.fillRect(0,0,1000,1200); 
+        this.ctx.drawImage(moscow,0,0, 1000, 600);
         this.ctx.beginPath();
         this.ctx.moveTo(0,200)
         this.ctx.lineTo(80,200)
         this.ctx.lineTo(170,250)
-        this.ctx.strokeStyle = '#a17f1a'
+        this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
@@ -209,7 +215,7 @@ class Board {
         this.ctx.moveTo(0,350)
         this.ctx.lineTo(80,350)
         this.ctx.lineTo(170,400)
-        this.ctx.strokeStyle = '#a17f1a'
+        this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
@@ -218,7 +224,7 @@ class Board {
         this.ctx.moveTo(1000,350)
         this.ctx.lineTo(920,350)
         this.ctx.lineTo(830,400)
-        this.ctx.strokeStyle = '#a17f1a'
+        this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
@@ -227,10 +233,13 @@ class Board {
         this.ctx.moveTo(1000,200)
         this.ctx.lineTo(920,200)
         this.ctx.lineTo(830,250)
-        this.ctx.strokeStyle = '#a17f1a'
+        this.ctx.strokeStyle = '#912903'
         this.ctx.lineWidth = 12
         this.ctx.stroke();
         this.ctx.closePath();
+        
+        this.chickenLeft.move();
+        this.chickenRight.move();
     }
 }
 
@@ -527,6 +536,8 @@ class EggTopRight extends _egg__WEBPACK_IMPORTED_MODULE_0__["default"] {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 /* harmony import */ var _audio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./audio */ "./src/audio.js");
+/* harmony import */ var _intro__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./intro */ "./src/intro.js");
+
 
 
 
@@ -534,6 +545,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas'); 
     const ctx = canvas.getContext('2d'); 
     Object(_audio__WEBPACK_IMPORTED_MODULE_1__["playAudio"])();
+
+    const intro = new _intro__WEBPACK_IMPORTED_MODULE_2__["default"](ctx);
+    intro.move();
 
     document.getElementById("play").addEventListener("click", () => {
         let x;
@@ -586,16 +600,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ "./src/board.js");
 /* harmony import */ var _matroshka__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./matroshka */ "./src/matroshka.js");
 /* harmony import */ var _basket__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./basket */ "./src/basket.js");
-/* harmony import */ var _chicken__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chicken */ "./src/chicken.js");
-/* harmony import */ var _kremlin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./kremlin */ "./src/kremlin.js");
-/* harmony import */ var _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./eggs/top_left_egg */ "./src/eggs/top_left_egg.js");
-/* harmony import */ var _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eggs/bottom_left_egg */ "./src/eggs/bottom_left_egg.js");
-/* harmony import */ var _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./eggs/top_right_egg */ "./src/eggs/top_right_egg.js");
-/* harmony import */ var _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./eggs/bottom_right_egg */ "./src/eggs/bottom_right_egg.js");
-/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./score */ "./src/score.js");
-/* harmony import */ var _game_over__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./game_over */ "./src/game_over.js");
-
-
+/* harmony import */ var _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./eggs/top_left_egg */ "./src/eggs/top_left_egg.js");
+/* harmony import */ var _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./eggs/bottom_left_egg */ "./src/eggs/bottom_left_egg.js");
+/* harmony import */ var _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./eggs/top_right_egg */ "./src/eggs/top_right_egg.js");
+/* harmony import */ var _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eggs/bottom_right_egg */ "./src/eggs/bottom_right_egg.js");
+/* harmony import */ var _score__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./score */ "./src/score.js");
+/* harmony import */ var _game_over__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./game_over */ "./src/game_over.js");
 
 
 
@@ -612,16 +622,12 @@ class Game {
         this.board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"](this.ctx);
         this.matroshka = new _matroshka__WEBPACK_IMPORTED_MODULE_1__["default"](this.ctx);
         this.basket = new _basket__WEBPACK_IMPORTED_MODULE_2__["default"](this.ctx);
-        this.chickenLeft = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx, 1, 10)
-        this.chickenRight = new _chicken__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx, 2, 890)
-        this.kremlin = new _kremlin__WEBPACK_IMPORTED_MODULE_4__["default"](this.ctx);
-        this.eggBottomLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
-        this.score = new _score__WEBPACK_IMPORTED_MODULE_9__["default"](this.ctx, 0, 3);
-        this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_10__["default"](this.ctx);
+        this.eggBottomLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx);
+        this.score = new _score__WEBPACK_IMPORTED_MODULE_7__["default"](this.ctx, 0, 3);
+        this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
         this.speed = 6;
-        // this.intensity = 0;
     }
 
     fillHans() {
@@ -632,13 +638,13 @@ class Game {
             let eggTopRight;
             let eggBottomRight;
             if (chance >= 0.750) {
-                eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
+                eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx);
             } else if (chance >= 0.500 && chance < 0.750) {
-                eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_6__["default"](this.ctx);
+                eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_4__["default"](this.ctx);
             } else if (chance >= 0.250 && chance < 0.500) {
-                eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_7__["default"](this.ctx);
+                eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
             } else {
-                eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
+                eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_6__["default"](this.ctx);
             }
             this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
         }, 1000)
@@ -705,9 +711,6 @@ class Game {
         this.board.move();
         this.matroshka.move(x)
         this.basket.move(x);
-        this.chickenLeft.move();
-        this.chickenRight.move();
-        this.kremlin.move();
         this.eggs.forEach(egg => {
             if (egg) {
                 egg.move(this.speed);
@@ -719,7 +722,6 @@ class Game {
                 this.score.move();
             }
         });
-        console.log(this.eggs.length)
     }
 
    
@@ -746,7 +748,7 @@ class GameOver {
 
     move() {
         this.ctx.font = "80px Arial";
-        this.ctx.fillStyle = "red";
+        this.ctx.fillStyle = "darkred";
         this.ctx.textAlign = "center";
         this.ctx.fillText(`Game Over`, 495, 250);
     }
@@ -756,30 +758,29 @@ class GameOver {
 
 /***/ }),
 
-/***/ "./src/kremlin.js":
-/*!************************!*\
-  !*** ./src/kremlin.js ***!
-  \************************/
+/***/ "./src/intro.js":
+/*!**********************!*\
+  !*** ./src/intro.js ***!
+  \**********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-const kremlin = new Image();
-kremlin.src = './images/kremlin.png'
 
-class Kremlin {
+class Intro {
     constructor(ctx) {
-        this.ctx = ctx;
-        this.image = kremlin
+       this.ctx = ctx;
+    }
+    
+    move() {
+        this.ctx.fillStyle = "darkred"; 
+        this.ctx.fillRect(0,0,1000,1200); 
     }
 
-    move() {
-        this.ctx.drawImage(this.image, 450, 200, 100, 200) 
-    }
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Kremlin);
+/* harmony default export */ __webpack_exports__["default"] = (Intro);
 
 /***/ }),
 
@@ -808,16 +809,12 @@ class Matroshka  {
     move(direction) {
         if (direction === 1) {
             this.drawMatroshka(280, 280);
-            // drawBasket(220, 280);
         } else if (direction === 2) {
             this.drawMatroshka(280, 280);
-            // drawBasket(220, 420)
         } else if ( direction === 3) {
             this.drawMatroshka(580, 280);
-            // drawBasket(760, 280);
         } else if (direction === 4) {
             this.drawMatroshka(580, 280);
-            // drawBasket(760, 420)
         }
     }
 
@@ -856,7 +853,7 @@ class Score {
         this.ctx.font = "60px Comic Sans MS";
         this.ctx.fillStyle = "#8B0000";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`${this.count}`, 150, 70);
+        this.ctx.fillText(` ${this.count}`, 150, 70);
         
         if (this.broken === 2) {
             this.ctx.drawImage(egg_broken, 650, 15, 80, 80)

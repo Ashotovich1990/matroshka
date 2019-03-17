@@ -1,8 +1,6 @@
 import Board from './board'
 import Matroshka from './matroshka';
 import Basket from './basket';
-import Chicken from './chicken';
-import Kremlin from './kremlin';
 import EggTopLeft from './eggs/top_left_egg';
 import EggBottomLeft from './eggs/bottom_left_egg';
 import EggTopRight from './eggs/top_right_egg';
@@ -16,16 +14,12 @@ class Game {
         this.board = new Board(this.ctx);
         this.matroshka = new Matroshka(this.ctx);
         this.basket = new Basket(this.ctx);
-        this.chickenLeft = new Chicken(this.ctx, 1, 10)
-        this.chickenRight = new Chicken(this.ctx, 2, 890)
-        this.kremlin = new Kremlin(this.ctx);
         this.eggBottomLeft = new EggTopLeft(this.ctx);
         this.score = new Score(this.ctx, 0, 3);
         this.gameOver = new GameOver(this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
         this.speed = 6;
-        // this.intensity = 0;
     }
 
     fillHans() {
@@ -109,9 +103,6 @@ class Game {
         this.board.move();
         this.matroshka.move(x)
         this.basket.move(x);
-        this.chickenLeft.move();
-        this.chickenRight.move();
-        this.kremlin.move();
         this.eggs.forEach(egg => {
             if (egg) {
                 egg.move(this.speed);
@@ -123,7 +114,6 @@ class Game {
                 this.score.move();
             }
         });
-        console.log(this.eggs.length)
     }
 
    

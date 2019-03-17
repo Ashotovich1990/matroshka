@@ -1,0 +1,33 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: rgb(97, 20, 20);
+    color: white;
+}
+
+h1 {
+    font-size: 400%;
+    text-align: center;
+}
+
+canvas {
+    display: table-row;
+    position: absolute;
+    margin-top: 8vh;
+    margin-left: 25vh;
+}
+
+#play {
+    font-size: xx-large;
+    display: table-row;
+    position: absolute;
+    margin-top: 1%;
+    margin-left: 40%;
+}
+
+#sound {
+    font-size: larger;
+    font-weight: bolder;
+    display: inline-block;
+    float: right;
+    margin-right: 10%;
+}

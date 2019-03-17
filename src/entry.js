@@ -1,10 +1,14 @@
 import Game from './game';
 import {playAudio} from './audio';
+import Intro from './intro';
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas'); 
     const ctx = canvas.getContext('2d'); 
     playAudio();
+
+    const intro = new Intro(ctx);
+    intro.move();
 
     document.getElementById("play").addEventListener("click", () => {
         let x;

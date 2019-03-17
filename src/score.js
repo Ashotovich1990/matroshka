@@ -16,7 +16,7 @@ class Score {
         this.ctx.font = "60px Comic Sans MS";
         this.ctx.fillStyle = "#8B0000";
         this.ctx.textAlign = "center";
-        this.ctx.fillText(`${this.count}`, 150, 70);
+        this.ctx.fillText(` ${this.count}`, 150, 70);
         
         if (this.broken === 2) {
             this.ctx.drawImage(egg_broken, 650, 15, 80, 80)
