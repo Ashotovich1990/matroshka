@@ -566,14 +566,19 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         x = x || 1;
         
-    
+        let level = 1
+        
+        game.fillHans(1);
         setInterval(() => {
             if (game.speed < 20) {
-                game.speed += 0.1;
+                game.speed += 0.05;
             }
-        }, 1000) 
-        
-        game.fillHans();
+            game.fillHans(level);
+        }, 2000) 
+
+        setInterval(() => {
+            level += 1;
+        }, 50000) 
 
         function loop() {
             if (game.score.broken <= 0) {
@@ -627,27 +632,31 @@ class Game {
         this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 6;
+        this.speed = 8;
     }
 
-    fillHans() {
-        setInterval(() => {
-            let chance = Math.random();
-            let eggTopLeft;
-            let eggBottomLeft;
-            let eggTopRight;
-            let eggBottomRight;
-            if (chance >= 0.750) {
-                eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx);
-            } else if (chance >= 0.500 && chance < 0.750) {
-                eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_4__["default"](this.ctx);
-            } else if (chance >= 0.250 && chance < 0.500) {
-                eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
-            } else {
-                eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_6__["default"](this.ctx);
-            }
-            this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }, 1000)
+    fillHans(x) {
+        let chance = Math.random();
+        chance = x * chance
+        if (chance <= 0.5) {
+            this.generateEggs(1);
+        } else if (chance > 0.5 && chance <= 0.85) {
+            this.generateEggs(2);
+        }
+        else if (chance > 0.85 && chance <= 0.95) {
+            this.generateEggs(3);
+        } else if (chance > 0.95 && chance <= 1) {
+            this.generateEggs(4);
+        }
+    }
+
+    generateEggs(difficultyLevel) {
+        let eggTopLeft = new _eggs_top_left_egg__WEBPACK_IMPORTED_MODULE_3__["default"](this.ctx);
+        let eggBottomLeft = new _eggs_bottom_left_egg__WEBPACK_IMPORTED_MODULE_4__["default"](this.ctx);
+        let eggTopRight = new _eggs_top_right_egg__WEBPACK_IMPORTED_MODULE_5__["default"](this.ctx);
+        let eggBottomRight = new _eggs_bottom_right_egg__WEBPACK_IMPORTED_MODULE_6__["default"](this.ctx);
+        let eggs = this.shuffleEggs([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight]).slice(0,difficultyLevel);
+        this.eggs = this.eggs.concat(eggs);
     }
 
     checkCollision(egg) {
@@ -722,6 +731,14 @@ class Game {
                 this.score.move();
             }
         });
+    }
+
+    shuffleEggs(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
     }
 
    

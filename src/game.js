@@ -19,27 +19,31 @@ class Game {
         this.gameOver = new GameOver(this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 6;
+        this.speed = 8;
     }
 
-    fillHans() {
-        setInterval(() => {
-            let chance = Math.random();
-            let eggTopLeft;
-            let eggBottomLeft;
-            let eggTopRight;
-            let eggBottomRight;
-            if (chance >= 0.750) {
-                eggTopLeft = new EggTopLeft(this.ctx);
-            } else if (chance >= 0.500 && chance < 0.750) {
-                eggBottomLeft = new EggBottomLeft(this.ctx);
-            } else if (chance >= 0.250 && chance < 0.500) {
-                eggTopRight = new EggTopRight(this.ctx);
-            } else {
-                eggBottomRight = new EggBottomRight(this.ctx);
-            }
-            this.eggs = this.eggs.concat([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight])
-        }, 1000)
+    fillHans(x) {
+        let chance = Math.random();
+        chance = x * chance
+        if (chance <= 0.5) {
+            this.generateEggs(1);
+        } else if (chance > 0.5 && chance <= 0.85) {
+            this.generateEggs(2);
+        }
+        else if (chance > 0.85 && chance <= 0.95) {
+            this.generateEggs(3);
+        } else if (chance > 0.95 && chance <= 1) {
+            this.generateEggs(4);
+        }
+    }
+
+    generateEggs(difficultyLevel) {
+        let eggTopLeft = new EggTopLeft(this.ctx);
+        let eggBottomLeft = new EggBottomLeft(this.ctx);
+        let eggTopRight = new EggTopRight(this.ctx);
+        let eggBottomRight = new EggBottomRight(this.ctx);
+        let eggs = this.shuffleEggs([eggTopLeft, eggBottomLeft, eggTopRight,eggBottomRight]).slice(0,difficultyLevel);
+        this.eggs = this.eggs.concat(eggs);
     }
 
     checkCollision(egg) {
@@ -114,6 +118,14 @@ class Game {
                 this.score.move();
             }
         });
+    }
+
+    shuffleEggs(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
     }
 
    

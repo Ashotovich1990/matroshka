@@ -27,14 +27,19 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         x = x || 1;
         
-    
+        let level = 1
+        
+        game.fillHans(1);
         setInterval(() => {
             if (game.speed < 20) {
-                game.speed += 0.1;
+                game.speed += 0.05;
             }
-        }, 1000) 
-        
-        game.fillHans();
+            game.fillHans(level);
+        }, 2000) 
+
+        setInterval(() => {
+            level += 1;
+        }, 50000) 
 
         function loop() {
             if (game.score.broken <= 0) {
