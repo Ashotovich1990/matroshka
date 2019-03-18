@@ -12,7 +12,7 @@ h1 {
 canvas {
     display: table-row;
     position: absolute;
-    margin-top: 8vh;
+    margin-top: 10vh;
     margin-left: 25vh;
 }
 
@@ -20,6 +20,11 @@ canvas {
     font-size: xx-large;
     display: table-row;
     position: absolute;
+    border: 4px #912903 solid;
+    background: brown;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 3px;
     margin-top: 1%;
     margin-left: 40%;
 }
@@ -29,5 +34,7 @@ canvas {
     font-weight: bolder;
     display: inline-block;
     float: right;
+    border: 4px #912903 solid;
+    background: brown;
     margin-right: 10%;
 }

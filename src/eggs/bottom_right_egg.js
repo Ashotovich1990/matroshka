@@ -29,9 +29,9 @@ class EggBottomRight extends Egg {
         this.pos[1] += 0.1 * x;
         this.ctx.drawImage(this.imageThree, this.pos[0], this.pos[1], 30, 30)
      } else if (this.pos[1] > 1001 && this.pos[1] < 1200) {
-      this.ctx.drawImage(this.imageSix, 750, 550, 30, 30)
-      this.pos[1] += 5
-   }
+         this.ctx.drawImage(this.imageSix, 750, 550, 30, 30)
+         this.pos[1] += 5
+     }
       
    }
 
