@@ -56,9 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 180000)
 
         function loop() {
-            // if (game.score.broken <= 0) {
-            //     return cancelAnimationFrame(loop);
-            // }
+            if (game.score.broken <= 0) {
+                return cancelAnimationFrame(loop);
+            }
             requestAnimationFrame(loop);
             game.step(x);
         } 
