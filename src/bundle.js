@@ -564,6 +564,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ "./src/game.js");
 /* harmony import */ var _audio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./audio */ "./src/audio.js");
 /* harmony import */ var _intro__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./intro */ "./src/intro.js");
+/* harmony import */ var _util_throttle_keypress__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/throttle_keypress */ "./src/util/throttle_keypress.js");
+
 
 
 
@@ -580,7 +582,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let x;
         const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
         loop()
-        document.addEventListener('keypress', event => {
+        document.addEventListener('keypress', Object(_util_throttle_keypress__WEBPACK_IMPORTED_MODULE_3__["throttle"])(event => {
             if (event.code === "KeyA") {
                 x = 1;
             } else if (event.code === "KeyZ") {
@@ -590,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (event.code === "KeyM") {
                 x = 4;
             }
-        })
+        }, 80));
         x = x || 1;
         
         let level = 1
@@ -621,9 +623,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 180000)
 
         function loop() {
-            if (game.score.broken <= 0) {
-                return cancelAnimationFrame(loop);
-            }
+            // if (game.score.broken <= 0) {
+            //     return cancelAnimationFrame(loop);
+            // }
             requestAnimationFrame(loop);
             game.step(x);
         } 
@@ -672,7 +674,7 @@ class Game {
         this.gameOver = new _game_over__WEBPACK_IMPORTED_MODULE_8__["default"](this.ctx);
         this.eggs = [];
         this.checkCollision = this.checkCollision.bind(this);
-        this.speed = 7;
+        this.speed = 10;
     }
 
     fillHans(x) {
@@ -836,7 +838,7 @@ class Intro {
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText('Rules Matroshka drops three eggs - you lose', 360, 90);
-        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 460, 150); 
+        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 150); 
         this.ctx.fillText('Press ‘A’ to fetch the egg on the top left', 340, 210);
         this.ctx.fillText('Press ‘Z’ to fetch the egg on the bottom left', 370, 270);
         this.ctx.fillText('Press ‘K’ to fetch the egg on the top right', 350, 330);
@@ -935,6 +937,34 @@ class Score {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Score);
+
+/***/ }),
+
+/***/ "./src/util/throttle_keypress.js":
+/*!***************************************!*\
+  !*** ./src/util/throttle_keypress.js ***!
+  \***************************************/
+/*! exports provided: throttle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throttle", function() { return throttle; });
+const throttle = (func,interval) => {
+   let timeout;
+  return function() {
+   let context = this, args = arguments;
+   let later = function () {
+      timeout = false;
+    };
+    if (!timeout) {
+      func.apply(context, args)
+      timeout = true;
+      setTimeout(later, interval)
+    }
+  }
+}
+
 
 /***/ })
 
