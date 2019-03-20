@@ -583,22 +583,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
         loop()
         
-        // document.getElementById("left-up-button").addEventListener("click", () => {
-        //     x = 1;
-        // })
-
-        // document.getElementById("left-bottom-button").addEventListener("click", () => {
-        //     x = 2;
-        // })
-
-        // document.getElementById("right-bottom-button").addEventListener("click", () => {
-        //     x = 4;
-        // })
-
-        // document.getElementById("right-up-button").addEventListener("click", () => {
-        //     x = 3;
-        // })
-
         document.addEventListener('keypress', Object(_util_throttle_keypress__WEBPACK_IMPORTED_MODULE_3__["throttle"])(event => {
             if (event.code === "KeyA") {
                 x = 1;
