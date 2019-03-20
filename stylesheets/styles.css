@@ -10,10 +10,71 @@ h1 {
 }
 
 canvas {
-    display: table-row;
-    position: absolute;
+    /* display: table-row;
+    position: absolute; */
     margin-top: 10vh;
-    margin-left: 25vh;
+    /* margin-left: 25vh; */
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.left-buttons {
+    margin-left: 3%;
+    font-size: xx-large;
+}
+
+.right-buttons {
+    margin-right: 3%;
+    margin-left: 3%;
+    font-size: xx-large;
+}
+
+#right-up-button {
+    display: inline-block;
+    margin-right: 10%;
+    border: 4px #912903 solid;
+    background: brown;
+    height: 70px;
+    width: 100px;
+    text-align: center;
+}
+
+#left-up-button {
+    display: inline-block;
+    margin-left: 10%;
+    border: 4px #912903 solid;
+    background: brown;
+    height: 70px;
+    width: 100px;
+    text-align: center;
+}
+
+#right-bottom-button {
+    display: inline-block;
+    margin-right: 10%;
+    border: 4px #912903 solid;
+    background: brown;
+    height: 70px;
+    width: 100px;
+    margin-top: 200px;
+    text-align: center;
+}
+
+#left-bottom-button {
+    display: inline-block;
+    margin-left: 10%;
+    border: 4px #912903 solid;
+    background: brown;
+    height: 70px;
+    width: 100px;
+    margin-top: 200px;
+    text-align: center;
 }
 
 #play {

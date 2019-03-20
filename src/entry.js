@@ -15,6 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let x;
         const game = new Game(ctx);
         loop()
+        
+        document.getElementById("left-up-button").addEventListener("click", () => {
+            x = 1;
+        })
+
+        document.getElementById("left-bottom-button").addEventListener("click", () => {
+            x = 2;
+        })
+
+        document.getElementById("right-bottom-button").addEventListener("click", () => {
+            x = 4;
+        })
+
+        document.getElementById("right-up-button").addEventListener("click", () => {
+            x = 3;
+        })
+
         document.addEventListener('keypress', throttle(event => {
             if (event.code === "KeyA") {
                 x = 1;

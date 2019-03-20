@@ -582,6 +582,23 @@ document.addEventListener("DOMContentLoaded", () => {
         let x;
         const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
         loop()
+        
+        document.getElementById("left-up-button").addEventListener("click", () => {
+            x = 1;
+        })
+
+        document.getElementById("left-bottom-button").addEventListener("click", () => {
+            x = 2;
+        })
+
+        document.getElementById("right-bottom-button").addEventListener("click", () => {
+            x = 4;
+        })
+
+        document.getElementById("right-up-button").addEventListener("click", () => {
+            x = 3;
+        })
+
         document.addEventListener('keypress', Object(_util_throttle_keypress__WEBPACK_IMPORTED_MODULE_3__["throttle"])(event => {
             if (event.code === "KeyA") {
                 x = 1;
@@ -825,10 +842,13 @@ class GameOver {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+const img = new Image();
+img.src = './images/matroshka.png'
 
 class Intro {
     constructor(ctx) {
        this.ctx = ctx;
+       this.image = img;
     }
     
     move() {
@@ -839,10 +859,14 @@ class Intro {
         this.ctx.textAlign = "center";
         this.ctx.fillText('Rules Matroshka drops three eggs - you lose', 360, 90);
         this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 150); 
-        this.ctx.fillText('Press ‘A’ to fetch the egg on the top left', 340, 210);
-        this.ctx.fillText('Press ‘Z’ to fetch the egg on the bottom left', 370, 270);
-        this.ctx.fillText('Press ‘K’ to fetch the egg on the top right', 350, 330);
-        this.ctx.fillText('Press ‘M’ to fetch the egg on the bottom right', 380, 390); 
+        this.ctx.fillText('Press ‘A’ to catch the egg on the top left', 340, 210);
+        this.ctx.fillText('Press ‘Z’ to catch the egg on the bottom left', 370, 270);
+        this.ctx.fillText('Press ‘K’ to catch the egg on the top right', 350, 330);
+        this.ctx.fillText('Press ‘M’ to catch the egg on the bottom right', 380, 390); 
+        setTimeout(() => {
+            this.ctx.drawImage(this.image, 800, 180, 140, 250)
+        }, 100
+        )
     }
 
 }
