@@ -19,20 +19,20 @@ canvas {
 .game {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
-
 }
 
 .left-buttons {
     margin-left: 3%;
     font-size: xx-large;
+    margin-right: 1.5%;
 }
 
 .right-buttons {
     margin-right: 3%;
-    margin-left: 3%;
     font-size: xx-large;
+    margin-left: 1.5%;
 }
 
 #right-up-button {
@@ -43,6 +43,7 @@ canvas {
     height: 70px;
     width: 100px;
     text-align: center;
+   
 }
 
 #left-up-button {
@@ -64,6 +65,7 @@ canvas {
     width: 100px;
     margin-top: 200px;
     text-align: center;
+  
 }
 
 #left-bottom-button {
