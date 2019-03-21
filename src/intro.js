@@ -1,10 +1,14 @@
-const img = new Image();
-img.src = './images/matroshka.png'
+const matrohska = new Image();
+matrohska.src = './images/matroshka.png'
+
+const basket = new Image();
+basket.src = './images/basket.png'
 
 class Intro {
     constructor(ctx) {
        this.ctx = ctx;
-       this.image = img;
+       this.matroshka = matrohska;
+       this.basket = basket;
     }
     
     move() {
@@ -13,16 +17,17 @@ class Intro {
         this.ctx.font = "30px Comic Sans MS";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
-        this.ctx.fillText('Rules Matroshka drops three eggs - you lose', 360, 90);
-        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 150); 
-        this.ctx.fillText('Press ‘A’ to catch the egg on the top left', 340, 210);
-        this.ctx.fillText('Press ‘Z’ to catch the egg on the bottom left', 370, 270);
-        this.ctx.fillText('Press ‘K’ to catch the egg on the top right', 350, 330);
-        this.ctx.fillText('Press ‘M’ to catch the egg on the bottom right', 380, 390); 
+        this.ctx.fillText('RULES', 100, 150);
+        this.ctx.fillText('Matroshka drops three eggs - you lose', 320, 200);
+        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 250); 
+        this.ctx.fillText('Press ‘A’ to catch the egg on the top left', 340, 300);
+        this.ctx.fillText('Press ‘Z’ to catch the egg on the bottom left', 370, 350);
+        this.ctx.fillText('Press ‘K’ to catch the egg on the top right', 350, 400);
+        this.ctx.fillText('Press ‘M’ to catch the egg on the bottom right', 380, 450); 
         setTimeout(() => {
-            this.ctx.drawImage(this.image, 800, 180, 140, 250)
-        }, 100
-        )
+            this.ctx.drawImage(this.basket, 750, 350, 80, 80)
+            this.ctx.drawImage(this.matroshka, 830, 210, 140, 250)
+        }, 40)
     }
 
 }
