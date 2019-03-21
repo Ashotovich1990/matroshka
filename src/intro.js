@@ -13,7 +13,7 @@ class Intro {
     
     move() {
         this.ctx.fillStyle = "darkred"; 
-        this.ctx.fillRect(0,0,1000,420);
+        this.ctx.fillRect(0,0,1000,440);
         this.ctx.font = "30px Comic Sans MS";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
