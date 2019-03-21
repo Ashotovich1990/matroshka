@@ -35,7 +35,7 @@ canvas {
     margin-left: 1.5%;
 }
 
-#right-up-button {
+/* #right-up-button {
     display: inline-block;
     margin-right: 10%;
     border: 4px #912903 solid;
@@ -77,8 +77,11 @@ canvas {
     width: 100px;
     margin-top: 200px;
     text-align: center;
+} */
+.start-new {
+    display: flex;;
+    justify-content: center;
 }
-
 #play {
     font-size: xx-large;
     display: table-row;
@@ -89,7 +92,7 @@ canvas {
     padding-right: 8px;
     border-radius: 3px;
     margin-top: 1%;
-    margin-left: 40%;
+    /* margin-left: 40%; */
 }
 
 #sound {
