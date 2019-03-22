@@ -13,13 +13,14 @@ class Intro {
     
     move() {
         this.ctx.fillStyle = "darkred"; 
-        this.ctx.fillRect(0,0,1000,440);
+        this.ctx.fillRect(0,0,1000,800);
         this.ctx.font = "30px Comic Sans MS";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
         this.ctx.fillText('RULES', 100, 70);
         this.ctx.fillText('Matroshka drops three eggs - you lose', 320, 120);
-        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 170); 
+        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 170);
+        this.ctx.fillText('How to play', 130, 220);  
         this.ctx.fillText('Press ‘A’ to catch the egg on the top left', 340, 220);
         this.ctx.fillText('Press ‘Z’ to catch the egg on the bottom left', 370, 270);
         this.ctx.fillText('Press ‘K’ to catch the egg on the top right', 350, 320);

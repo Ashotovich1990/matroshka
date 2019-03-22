@@ -5,7 +5,7 @@ export const playAudio = () => {
     
     const audioElement = document.querySelector('audio');
     
-    const playButton = document.querySelector('button');
+    const playButton = document.getElementById('sound');
     
     playButton.addEventListener('click', function() {
 
