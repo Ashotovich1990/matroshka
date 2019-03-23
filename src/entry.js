@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (event.code === "KeyM") {
                 x = 4;
             }
-        }, 80));
+        }, 40));
         x = x || 1;
         
         let level = 1
