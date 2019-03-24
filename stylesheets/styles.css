@@ -104,3 +104,15 @@ canvas {
     background: brown;
     margin-right: 10%;
 }
+
+.github-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+
+}
+
+a {
+    font-size: 60px;
+    margin-right: 40px;
+}
