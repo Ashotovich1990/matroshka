@@ -574,9 +574,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas'); 
     const ctx = canvas.getContext('2d'); 
     Object(_audio__WEBPACK_IMPORTED_MODULE_1__["playAudio"])();
+    let y = 1;
+
+    setInterval(()=> {
+       if (y === 4) y = 0;
+       y += 1;
+    }, 1200)
+
+    function loopIntro() {
+        requestAnimationFrame(loopIntro);
+        intro.move(y)
+    }
 
     const intro = new _intro__WEBPACK_IMPORTED_MODULE_2__["default"](ctx);
-    intro.move();
+    loopIntro();
 
     document.getElementById("play").addEventListener("click", () => {
         let x;
@@ -630,8 +641,8 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(loop);
             game.step(x);
         } 
-    });
 
+    });
 });
 
 /***/ }),
@@ -839,24 +850,35 @@ class Intro {
        this.basket = basket;
     }
     
-    move() {
+    move(pos) {
         this.ctx.fillStyle = "darkred"; 
         this.ctx.fillRect(0,0,1000,800);
         this.ctx.font = "30px Comic Sans MS";
         this.ctx.fillStyle = "white";
         this.ctx.textAlign = "center";
-        this.ctx.fillText('RULES', 100, 70);
-        this.ctx.fillText('Matroshka drops three eggs - you lose', 320, 120);
-        this.ctx.fillText('Collect as many eggs as you can - Matroshka is immortal', 440, 170);
-        this.ctx.fillText('How to play', 130, 220);  
-        this.ctx.fillText('Press ‘A’ to catch the egg on the top left', 340, 220);
-        this.ctx.fillText('Press ‘Z’ to catch the egg on the bottom left', 370, 270);
-        this.ctx.fillText('Press ‘K’ to catch the egg on the top right', 350, 320);
-        this.ctx.fillText('Press ‘M’ to catch the egg on the bottom right', 380, 370); 
-        setTimeout(() => {
-            this.ctx.drawImage(this.basket, 740, 295, 80, 80)
-            this.ctx.drawImage(this.matroshka, 830, 130, 140, 250)
-        }, 50)
+        this.ctx.fillText('RULES', 150, 70);
+        this.ctx.fillText('* Matroshka drops three eggs - you lose', 370, 120);
+        this.ctx.fillText('* Collect as many eggs as you can - Matroshka is immortal', 490, 170);
+        this.ctx.fillText('* How to play', 180, 220);  
+    
+        if (pos === 1) {
+            this.ctx.fillText('press ‘A’ to catch the egg on the top left', 390, 270);
+            this.ctx.drawImage(this.basket, 100, 300, 80, 80)
+            this.ctx.drawImage(this.matroshka, 180, 300, 140, 250)
+        } else if (pos === 2) {
+            this.ctx.fillText('press ‘Z’ to catch the egg on the bottom left', 420, 270);
+            this.ctx.drawImage(this.basket, 100, 450, 80, 80)
+            this.ctx.drawImage(this.matroshka, 180, 300, 140, 250)
+        } else if (pos === 3) {
+            this.ctx.fillText('press ‘M’ to catch the egg on the bottom right', 420, 270);
+            this.ctx.drawImage(this.basket, 820, 450, 80, 80)
+            this.ctx.drawImage(this.matroshka, 680, 300, 140, 250)
+        } else if (pos === 4) {
+            this.ctx.fillText('press ‘K’ to catch the egg on the top right', 390, 270);
+            this.ctx.drawImage(this.basket, 820, 300, 80, 80)
+            this.ctx.drawImage(this.matroshka, 680, 300, 140, 250)
+        }
+
     }
 
 }

@@ -7,9 +7,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.getElementById('canvas'); 
     const ctx = canvas.getContext('2d'); 
     playAudio();
+    let y = 1;
+
+    setInterval(()=> {
+       if (y === 4) y = 0;
+       y += 1;
+    }, 1200)
+
+    function loopIntro() {
+        requestAnimationFrame(loopIntro);
+        intro.move(y)
+    }
 
     const intro = new Intro(ctx);
-    intro.move();
+    loopIntro();
 
     document.getElementById("play").addEventListener("click", () => {
         let x;
@@ -63,6 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(loop);
             game.step(x);
         } 
-    });
 
+    });
 });
