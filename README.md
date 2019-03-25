@@ -1,2 +1,11 @@
 # Matroshka
-You can play the game here 
+## You can play the game [here](https://ashotovich1990.github.io/matroshka/)
+***
+
+## I created this game in 3 days, inspired by an arcade game from my childhood. 
+
+## RULES
+ if you drop three eggs you lose.
+ Use "A", "Z", "K" and "M" on your keyboard to move the doll and the basket. 
+ As you play on the more and faster eggs will start coming on. 
+ And don't forget to turn the sound on ;)
