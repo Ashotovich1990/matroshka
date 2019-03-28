@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
        if (y === 4) y = 0;
        y += 1;
     }, 1200)
-
+    
+    let stopIntro = false;
     function loopIntro() {
+        if (stopIntro) return cancelAnimationFrame(loopIntro);
         requestAnimationFrame(loopIntro);
         intro.move(y)
     }
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loopIntro();
 
     document.getElementById("play").addEventListener("click", () => {
+        stopIntro = true;
         let x;
         const game = new Game(ctx);
         loop()

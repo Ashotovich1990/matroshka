@@ -580,8 +580,10 @@ document.addEventListener("DOMContentLoaded", () => {
        if (y === 4) y = 0;
        y += 1;
     }, 1200)
-
+    
+    let stopIntro = false;
     function loopIntro() {
+        if (stopIntro) return cancelAnimationFrame(loopIntro);
         requestAnimationFrame(loopIntro);
         intro.move(y)
     }
@@ -590,6 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loopIntro();
 
     document.getElementById("play").addEventListener("click", () => {
+        stopIntro = true;
         let x;
         const game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
         loop()
