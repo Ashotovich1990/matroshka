@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("play").addEventListener("click", () => {
         stopIntro = true;
+        
         let x;
         const game = new Game(ctx);
         loop()
