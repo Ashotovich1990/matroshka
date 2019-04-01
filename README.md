@@ -7,13 +7,13 @@
 ## RULES
  * if you drop three eggs you lose.
  * to move the doll and the basket
- ** press 'A' on your keyboard 
+ * press 'A' on your keyboard 
 ![](images/A.png)
- ** press 'K' on your keyboard 
+ * press 'K' on your keyboard 
  ![](images/K.png)
-  ** press 'Z' on your keyboard 
+ * press 'Z' on your keyboard 
  ![](images/Z.png)
-  ** press 'M' on your keyboard 
+  * press 'M' on your keyboard 
  ![](images/M.png)
  
  * as you play on the more and faster eggs will start coming on. 
