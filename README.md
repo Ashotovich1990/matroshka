@@ -5,7 +5,8 @@
 #### I created this game in 3 days, inspired by an arcade game from my childhood. 
 
 ## RULES
- ### are simple, if you drop three eggs you lose, and to move the doll and the basket
+ ### They are simple, if you drop three eggs you lose. 
+ ### To move the doll and the basket
  * press 'A' on your keyboard 
 ![](images/A.png)
  * press 'K' on your keyboard 
