@@ -19,4 +19,5 @@
  * as you play on the more and faster eggs will start coming on. 
  ![](images/harder.png)
  * and don't forget to turn the sound on ;)
+ ![](images/sound.png)
 
