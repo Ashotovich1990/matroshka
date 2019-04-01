@@ -16,7 +16,7 @@
   * press 'M' on your keyboard 
  ![](images/M.png)
  
- ### As you play on the more and faster eggs will start coming on. 
+ ### As you play on more and faster eggs will start coming on. 
  ![](images/harder.png)
  ### And don't forget to turn the sound on ;)
  ![](images/sound.png)
